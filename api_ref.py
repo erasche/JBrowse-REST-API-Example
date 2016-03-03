@@ -1,33 +1,15 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 import random
-seq = [random.choice(list('ACTG')) for x in range(10000)]
+import copy
+seq = [random.choice(list('ACTG')) for x in range(100000)]
 
-
-@app.route('/RegionFeatureDensities/chrA')
-def rfd_chra():
-    data = {
-        "bins":  [
-            51, 50, 58, 63, 57, 57, 65, 66, 63, 61,
-            56, 49, 50, 47, 39, 38, 54, 41, 50, 71,
-            61, 44, 64, 60, 42
-        ],
-        "stats": {
-            "basesPerBin": 200,
-            "max": 88
-        }
-    }
-    return jsonify(**data)
 
 @app.route('/stats/global')
 def stats_global():
     data = {
+        # Setting this high will return "too much data to show"
         "featureDensity": 0.02,
-        "featureCount": 234235,
-        "scoreMin": 87,
-        "scoreMax": 87,
-        "scoreMean": 42,
-        "scoreStdDev": 2.1,
     }
     return jsonify(**data)
 
@@ -100,10 +82,6 @@ def feats():
             ]
         }
     return jsonify(**data)
-
-@app.route("/")
-def hello():
-    return "Hello World!"
 
 @app.after_request
 def apply_caching(response):
