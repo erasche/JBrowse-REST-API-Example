@@ -32,5 +32,9 @@
             }
         }
    ],
+   "names": {
+        "type": "REST",
+        "url": "http://localhost:5000/names"
+   },
    "formatVersion" : 1
 }
