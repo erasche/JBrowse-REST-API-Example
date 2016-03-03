@@ -1,0 +1,35 @@
+{
+   "tracks" : [
+        {
+            "label":      "my_rest_track",
+            "key":        "REST Test Track",
+            "storeClass": "JBrowse/Store/SeqFeature/REST",
+            "baseUrl":    "http://localhost:5000",
+            "query": {
+                "soType": "gene"
+            },
+            "style": {
+                "showLabels": true,
+                "showTooltips": true,
+                "label": "name,id",
+                "description": "note,description",
+                "className": "feature",
+                "color": "#a6cee3"
+              },
+            "type": "JBrowse/View/Track/CanvasFeatures",
+              "trackType": "JBrowse/View/Track/CanvasFeatures"
+        },
+        {
+            "useAsRefSeqStore": true,
+            "label":      "ref_seq",
+            "key":        "REST Reference Sequence",
+            "type":       "JBrowse/View/Track/Sequence",
+            "storeClass": "JBrowse/Store/SeqFeature/REST",
+            "baseUrl":    "http://localhost:5000",
+            "query": {
+                "sequence": true
+            }
+        }
+   ],
+   "formatVersion" : 1
+}
