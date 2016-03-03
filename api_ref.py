@@ -1,22 +1,35 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 app = Flask(__name__)
+import json
 import random
 import copy
-seq = [random.choice(list('ACTG')) for x in range(100000)]
 
+def make_seq(length):
+    return ''.join([random.choice(list('ACTG')) for x in range(length)])
+
+seqs = {
+    key: make_seq(random.randint(10000, 30000))
+    for key in ('chrA', 'chrB', 'chrX')
+}
 
 @app.route('/refSeqs.json')
 def ref_seqs():
     data = [
         {
-            "length":len(seq),
-            "name":"chrA",
-            "start":0,
-            "end": len(seq)
+            "length": len(seqs[key]),
+            "name": key,
+            "start": 0,
+            "end": len(seqs[key]),
+            "seqChunkSize":20000
         }
+        for key in seqs.keys()
     ]
-    return jsonify(**data)
-
+    resp = Response(
+        response=json.dumps(data),
+        status=200,
+        mimetype="application/json"
+    )
+    return resp
 
 @app.route('/stats/global')
 def stats_global():
@@ -26,8 +39,8 @@ def stats_global():
     }
     return jsonify(**data)
 
-@app.route('/features/chrA')
-def feats():
+@app.route('/features/<refseq>')
+def feats(refseq):
     if request.args.get('sequence') == 'true':
         start = int(request.args.get('start'))
         end = int(request.args.get('end'))
@@ -56,14 +69,14 @@ def feats():
                             "subfeatures": [
                                 { "type": "five_prime_UTR", "start": 5975, "end": 6109, "score": 0.98, "strand": 1 },
                                 { "type": "start_codon", "start": 6110, "end": 6112, "strand": 1, "phase": 0 },
-                                { "type": "CDS",         "start": 6110, "end": 6148, "score": 1, "strand": 1, "phase": 0 },
-                                { "type": "CDS",         "start": 6615, "end": 6683, "score": 1, "strand": 1, "phase": 0 },
-                                { "type": "CDS",         "start": 6758, "end": 7040, "score": 1, "strand": 1, "phase": 0 },
                                 { "type": "CDS",         "start": 7142, "end": 7319, "score": 1, "strand": 1, "phase": 2 },
                                 { "type": "CDS",         "start": 7411, "end": 7687, "score": 1, "strand": 1, "phase": 1 },
                                 { "type": "CDS",         "start": 7748, "end": 7850, "score": 1, "strand": 1, "phase": 0 },
                                 { "type": "CDS",         "start": 7953, "end": 8098, "score": 1, "strand": 1, "phase": 2 },
                                 { "type": "CDS",         "start": 8166, "end": 8320, "score": 1, "strand": 1, "phase": 0 },
+                                { "type": "CDS",         "start": 6110, "end": 6148, "score": 1, "strand": 1, "phase": 0 },
+                                { "type": "CDS",         "start": 6615, "end": 6683, "score": 1, "strand": 1, "phase": 0 },
+                                { "type": "CDS",         "start": 6758, "end": 7040, "score": 1, "strand": 1, "phase": 0 },
                                 { "type": "CDS",         "start": 8419, "end": 8614, "score": 1, "strand": 1, "phase": 1 },
                                 { "type": "CDS",         "start": 8708, "end": 8811, "score": 1, "strand": 1, "phase": 0 },
                                 { "type": "CDS",         "start": 8927, "end": 9239, "score": 1, "strand": 1, "phase": 1 },
