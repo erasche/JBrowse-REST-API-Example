@@ -5,6 +5,19 @@ import copy
 seq = [random.choice(list('ACTG')) for x in range(100000)]
 
 
+@app.route('/refSeqs.json')
+def ref_seqs():
+    data = [
+        {
+            "length":len(seq),
+            "name":"chrA",
+            "start":0,
+            "end": len(seq)
+        }
+    ]
+    return jsonify(**data)
+
+
 @app.route('/stats/global')
 def stats_global():
     data = {

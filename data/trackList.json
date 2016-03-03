@@ -1,4 +1,5 @@
 {
+   "refSeqs": "http://localhost:5000/refSeqs.json",
    "tracks" : [
         {
             "label":      "my_rest_track",
