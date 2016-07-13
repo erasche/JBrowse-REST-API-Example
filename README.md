@@ -20,3 +20,5 @@ And the API will be available on port 5000
 
 In case the flask example was not clear enough, there are some raw JSON files
 that serve as an example in the `raw` folder.
+
+These lack the sequence query examples but should be pretty clear.

@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, Response
+from flask_frozen import Freezer
 app = Flask(__name__)
+freezer = Freezer(app)
+
 import json
 import random
-import copy
 
 def make_seq(length):
     return ''.join([random.choice(list('ACTG')) for x in range(length)])
@@ -58,7 +60,7 @@ def make_feat(refseq):
         ]
     }
 
-def feat2searchLoc(f):
+def feat2searchLoc(key, f):
     return {
         'name': f['name'],
         'location': {
@@ -118,13 +120,13 @@ def search():
         for key in CHROM_NAMES:
             for f in features[key]:
                 if f['name'] == request.args.get('equals'):
-                    data.append(feat2searchLoc(f))
+                    data.append(feat2searchLoc(key, f))
 
     elif request.args.get('startswith'):
         for key in CHROM_NAMES:
             for f in features[key]:
                 if f['name'].startswith(request.args.get('startswith')):
-                    data.append(feat2searchLoc(f))
+                    data.append(feat2searchLoc(key, f))
 
     resp = Response(
         response=json.dumps(data),
@@ -155,6 +157,13 @@ def feats(refseq):
         }
     return jsonify(**data)
 
+# @freezer.register_generator
+# def feats():
+    # for chrom in CHROM_NAMES:
+        # # yield 'feats', {'refseq': chrom}
+        # for i in range(0, len(seqs[chrom]), 5000):
+            # yield '/features/%s?sequence=true&start=%s&end=%s' % (chrom, i, i + 5000)
+
 @app.after_request
 def apply_caching(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
@@ -162,4 +171,6 @@ def apply_caching(response):
     return response
 
 if __name__ == "__main__":
+    freezer.freeze()
     app.run(debug=True)
+
