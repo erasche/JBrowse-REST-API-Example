@@ -99,7 +99,7 @@ def ref_seqs():
         for key in seqs.keys()
     ]
     resp = Response(
-        response=json.dumps(data),
+        response=json.dumps(data, indent=2),
         status=200,
         mimetype="application/json"
     )
