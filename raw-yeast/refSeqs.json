@@ -1,0 +1,121 @@
+[
+  {
+    "end": 230218,
+    "length": 230218,
+    "name": "NC_001133.9",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 813184,
+    "length": 813184,
+    "name": "NC_001134.8",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 316620,
+    "length": 316620,
+    "name": "NC_001135.5",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 1531933,
+    "length": 1531933,
+    "name": "NC_001136.10",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 576874,
+    "length": 576874,
+    "name": "NC_001137.3",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 270161,
+    "length": 270161,
+    "name": "NC_001138.5",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 1090940,
+    "length": 1090940,
+    "name": "NC_001139.9",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 562643,
+    "length": 562643,
+    "name": "NC_001140.6",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 439888,
+    "length": 439888,
+    "name": "NC_001141.2",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 745751,
+    "length": 745751,
+    "name": "NC_001142.9",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 666816,
+    "length": 666816,
+    "name": "NC_001143.9",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 1078177,
+    "length": 1078177,
+    "name": "NC_001144.5",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 924431,
+    "length": 924431,
+    "name": "NC_001145.3",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 784333,
+    "length": 784333,
+    "name": "NC_001146.8",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 1091291,
+    "length": 1091291,
+    "name": "NC_001147.6",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 948066,
+    "length": 948066,
+    "name": "NC_001148.4",
+    "seqChunkSize": 20000,
+    "start": 0
+  },
+  {
+    "end": 85779,
+    "length": 85779,
+    "name": "NC_001224.1",
+    "seqChunkSize": 20000,
+    "start": 0
+  }
+]
